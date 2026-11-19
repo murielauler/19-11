@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Claude Workshop · 19/11</title>
+<title>Exercício 06 · Matriz de priorização</title>
 <meta name="description" content="Prompts e arquivos dos exercícios do workshop de Claude.">
 <style>
 :root {
@@ -127,6 +127,20 @@ details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 .opc span:last-child { font-size: .88rem; color: var(--muted); }
 @media (max-width: 860px) { .escolha { grid-template-columns: 1fr; } }
 
+.dados { margin-top: 1.4rem; border: 1px solid var(--accent-line); border-radius: .9rem; background: #fff; padding: 1.1rem 1.25rem 1.25rem; }
+.dados h3 { font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; }
+.campos { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem 1rem; }
+.campos label { display: grid; gap: .35rem; font-size: .85rem; font-weight: 700; color: var(--ink); }
+.campos .larga { grid-column: 1 / -1; }
+.campos input, .campos textarea { font: inherit; font-weight: 400; font-size: .98rem; color: var(--text); background: var(--paper); border: 1px solid var(--line); border-radius: .55rem; padding: .6rem .75rem; width: 100%; }
+.campos textarea { resize: vertical; min-height: 4.6rem; line-height: 1.5; }
+.campos input:focus, .campos textarea:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px rgb(239 112 26 / 15%); }
+.campos .falta { border-color: #c0523f; }
+.aviso-dados { margin-top: .7rem; color: #b3261e; font-size: .88rem; }
+button.btn { font: inherit; font-size: .95rem; font-weight: 700; }
+.prompt-head strong { font-size: .88rem; color: #e9d6c6; font-weight: 500; }
+@media (max-width: 860px) { .campos { grid-template-columns: 1fr; } }
+
 .overlay { display: none; }
 
 @media (max-width: 860px) {
@@ -159,264 +173,44 @@ details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 <div class="layout">
   <aside class="sidebar" id="sidebar" aria-label="Menu">
     <nav>
-      <p class="group">Começo</p>
-      <a href="#inicio"><span class="n">—</span><span>Materiais do dia</span></a>
-      <p class="group">Exercício 05 · O seu assistente</p>
-      <a href="#p1"><span class="n">01</span><span>Crie o assistente</span></a>
-      <a href="#p2"><span class="n">02</span><span>Escolha a tarefa</span></a>
-      <a href="#p3"><span class="n">03</span><span>Ajuste e agende</span></a>
-      <a href="#p4"><span class="n">04</span><span>Mais tarefas</span></a>
-      <a href="#trilha"><span class="n">—</span><span>Trilha pronta: painel dos fundos</span></a>
       <p class="group">Exercício 06 · Sua área</p>
-      <a href="#ex6"><span class="n">—</span><span>Matriz de priorização</span></a>
-      <a href="#canvas"><span class="n">—</span><span>Canvas do agente</span></a>
-      <p class="group">Exercício 07 · Retorno</p>
-      <a href="#ex7"><span class="n">—</span><span>CFO cético</span></a>
+      <a href="#ex6"><span class="n">01</span><span>Matriz de priorização</span></a>
+      <a href="#canvas"><span class="n">02</span><span>Canvas do agente</span></a>
     </nav>
-    <div class="side-box"><strong>Só leitura.</strong> O assistente lê a sua caixa, mas não responde nem envia e-mail. Na trilha pronta, os dados são inventados.</div>
+    <div class="side-box"><strong>Seus dados ficam com você.</strong> O que você escreve aqui não é enviado para lugar nenhum: só entra no prompt.</div>
   </aside>
   <div class="overlay" id="overlay"></div>
 
   <main>
     <div class="content">
 
-      <section class="step" id="inicio">
-        <div class="step-meta"><span class="kicker">Materiais do workshop</span></div>
-        <h1>Claude Workshop · 19/11</h1>
-        <p class="lead">Os prompts e os arquivos dos exercícios. Escolha o passo no menu, clique em <strong>Copiar</strong> e cole no Claude.</p>
-        <div class="cards">
-          <a href="#p1"><span class="part">EXERCÍCIO 05 · PASSO 1</span><h4>Crie o seu assistente</h4><p>4 perguntas e o Claude escreve as instruções.</p></a>
-          <a href="#p2"><span class="part">EXERCÍCIO 05 · PASSO 2</span><h4>Escolha a tarefa</h4><p>Um cardápio com 6 tarefas prontas.</p></a>
-          <a href="#p3"><span class="part">EXERCÍCIO 05 · PASSO 3</span><h4>Ajuste e agende</h4><p>Corrija na skill e ponha para rodar sozinha.</p></a>
-          <a href="#p4"><span class="part">EXERCÍCIO 05 · PASSO 4</span><h4>Mais tarefas</h4><p>Outra do cardápio, ou a sua.</p></a>
-          <a href="#trilha"><span class="part">EXERCÍCIO 05 · OPÇÃO</span><h4>Trilha pronta</h4><p>O painel dos fundos, com dados fictícios.</p></a>
-          <a href="#ex6"><span class="part">EXERCÍCIO 06</span><h4>Matriz de priorização</h4><p>As tarefas da sua área em impacto × esforço.</p></a>
-          <a href="#canvas"><span class="part">EXERCÍCIO 06</span><h4>Canvas do agente</h4><p>Para a tarefa que ficou em Priorizar.</p></a>
-          <a href="#ex7"><span class="part">EXERCÍCIO 07</span><h4>CFO cético</h4><p>O business case em 5 linhas e a crítica.</p></a>
-        </div>
-        <footer class="step-foot">
-          <nav class="pn"><a class="next" href="#p1">Começar →</a></nav>
-        </footer>
-      </section>
 
-      <section class="step" id="p1">
-        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 1 de 4</span></div>
-        <h2>Crie o seu assistente</h2>
-        <p class="lead">O Claude entrevista você em 4 perguntas e escreve as instruções do seu Projeto.</p>
-        <ol class="passos">
-          <li>Abra um chat novo no Claude, cole o prompt e responda curto.</li>
-          <li>Claude › Projetos › Novo projeto. Nome: <strong>Meu assistente</strong>.</li>
-          <li>Em Instruções do projeto, cole o texto que o Claude escreveu.</li>
-          <li>Ligue o conector do Outlook (só leitura).</li>
-        </ol>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
-<pre>Quero montar um Projeto no Claude que funcione como o meu assistente: ele lê a minha caixa de e-mail, só para leitura, e faz tarefas para mim.
-
-Me faça 4 perguntas, uma por vez, e espere a minha resposta antes da próxima:
-1. Qual é o seu cargo e a sua área, e o que você acompanha no dia a dia?
-2. Quais pessoas e assuntos não podem esperar? Por exemplo: diretoria, cotistas, comitê, um fundo ou um projeto.
-3. O que costuma se perder na sua caixa ou tomar o seu tempo?
-4. Como você quer receber as entregas? Curtas ou detalhadas, em lista ou em tabela.
-
-No fim, escreva as instruções do Projeto, prontas para eu colar, com até 1.500 caracteres, neste formato:
-PAPEL: quem é o assistente e para quem trabalha.
-RECURSOS: a minha caixa de e-mail, pelo conector do Outlook (só leitura).
-AÇÃO: o que ele prioriza e como decide o que é importante, a partir das minhas respostas.
-TOM: como eu quero receber as entregas.
-O QUE NÃO FAZER: nunca responder, encaminhar, enviar nem apagar e-mail. Não inventar o que não está nos e-mails. Rascunho, só no chat.
-
-Se uma resposta minha vier curta, siga em frente.</pre>
-        </div>
-        <footer class="step-foot">
-          <nav class="pn"><a href="#inicio">← Início</a><a class="next" href="#p2">Escolha a tarefa →</a></nav>
-        </footer>
-      </section>
-      <section class="step" id="p2">
-        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 2 de 4</span></div>
-        <h2>Escolha a primeira tarefa</h2>
-        <p class="lead">Cada tarefa do cardápio vira uma skill. Escolha uma, copie o pedido e cole em um chat novo, dentro do seu Projeto. Ela já roda com a sua caixa.</p>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">A</span><strong>Triagem da caixa</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Crie uma skill chamada triagem-da-caixa.
-Ela lê os e-mails que recebi nos últimos 7 dias, confere nos enviados o que eu já respondi e monta um painel em um artefato, com três blocos:
-1. O que chegou: cada e-mail em uma linha, agrupado por assunto.
-2. O que é importante: o que tem prazo, pede uma ação minha ou vem das pessoas e dos assuntos prioritários. Diga o porquê.
-3. O que eu ainda não respondi: e-mails que pedem resposta, do mais antigo para o mais novo.
-No topo, liste o que eu preciso fazer hoje, do mais urgente para o menos urgente.
-Não responda nem envie nenhum e-mail.
-Rode agora e me mostre o resultado.</pre>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">B</span><strong>Minhas pendências</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Crie uma skill chamada minhas-pendencias.
-Ela lê os e-mails recebidos e enviados dos últimos 14 dias e monta duas listas em um artefato:
-1. O que eu pedi e ainda não responderam: para quem, o quê e desde quando.
-2. O que me pediram e eu ainda não entreguei: quem pediu, o quê e o prazo, se houver.
-Ordene do mais antigo para o mais novo e destaque o que está parado há mais de 5 dias.
-Não responda nem envie nenhum e-mail.
-Rode agora e me mostre o resultado.</pre>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">C</span><strong>Radar de um assunto</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Crie uma skill chamada radar-do-assunto.
-Ela lê os e-mails dos últimos 7 dias sobre [um fundo, um cedente, um cliente ou um projeto] e monta um painel em um artefato: o que aconteceu, as decisões tomadas, o que está em aberto e com quem, e os próximos prazos.
-Não responda nem envie nenhum e-mail.
-Rode agora e me mostre o resultado.</pre>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">D</span><strong>Resumo da semana</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Crie uma skill chamada resumo-da-semana.
-Ela lê os e-mails que recebi e enviei nos últimos 7 dias e escreve o rascunho do resumo semanal da minha área para a diretoria, em até 10 linhas: o que foi entregue, o que está em andamento, os riscos e o que precisa de decisão.
-É só rascunho, aqui no chat. Não responda nem envie nenhum e-mail.
-Rode agora e me mostre o resultado.</pre>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">E</span><strong>Preparar as reuniões</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Crie uma skill chamada preparar-reunioes.
-Ela olha as reuniões de hoje na minha agenda e, para cada uma, busca os e-mails recentes com os participantes ou sobre o assunto. Entregue, por reunião: o contexto em 3 linhas, o que ficou pendente da última conversa e 2 perguntas que eu deveria fazer.
-Se não conseguir ler a agenda, me avise e não invente reuniões.
-Não responda nem envie nenhum e-mail.
-Rode agora e me mostre o resultado.</pre>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">F</span><strong>Radar de mercado</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Crie uma skill chamada radar-de-mercado.
-Ela busca na web as notícias dos últimos 7 dias sobre FIDCs e crédito privado no Brasil e entrega as 5 mais relevantes para a minha área: título, fonte, link e, em uma linha, por que importa.
-Se a busca na web não estiver disponível, me avise e não invente notícias.
-Rode agora e me mostre o resultado.</pre>
-        </div>
-        <p class="depois">Salve a skill e confira um item do resultado na sua caixa.</p>
-        <footer class="step-foot">
-          <nav class="pn"><a href="#p1">← Crie o assistente</a><a class="next" href="#p3">Ajuste e agende →</a></nav>
-        </footer>
-      </section>
-      <section class="step" id="p3">
-        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 3 de 4</span></div>
-        <h2>Ajuste e agende</h2>
-        <p class="lead">O que não ficou bom, você corrige na skill, e não no chat. Depois ela passa a rodar sozinha.</p>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt 1</span><strong>Ajuste e grave na skill</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Ajuste: [diga o que mudar, por exemplo: "deixe de fora as newsletters" ou "comece pelo que vem da diretoria"].
-Grave essa correção na skill, para valer nas próximas vezes, e rode de novo.</pre>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt 2</span><strong>Agende</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Agende essa skill para rodar todo dia útil às 8h, aqui neste Projeto.
-Em cada execução, mostre o resultado em um artefato e diga o que mudou desde a última vez.
-Não responda nem envie nenhum e-mail.</pre>
-        </div>
-        <p class="depois">Troque o horário se fizer sentido: o resumo da semana, por exemplo, pode rodar toda sexta às 16h. Se não aparecer a opção de agendar, siga sem essa parte: você roda a skill na mão.</p>
-        <footer class="step-foot">
-          <nav class="pn"><a href="#p2">← Escolha a tarefa</a><a class="next" href="#p4">Mais tarefas →</a></nav>
-        </footer>
-      </section>
-      <section class="step" id="p4">
-        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 4 de 4</span></div>
-        <h2>Dê mais tarefas ao assistente</h2>
-        <p class="lead">Volte ao cardápio do passo 2 e escolha outra tarefa. Ou escreva a sua, no molde abaixo.</p>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Molde</span><strong>A sua própria tarefa</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Crie uma skill chamada [nome].
-Ela lê [o quê, de que período] e entrega [o quê, em que formato].
-Não responda nem envie nenhum e-mail.
-Rode agora e me mostre o resultado.</pre>
-        </div>
-        <div class="btn-row"><a class="btn ghost" href="#p2">← Voltar ao cardápio</a></div>
-        <footer class="step-foot">
-          <nav class="pn"><a href="#p3">← Ajuste e agende</a><a class="next" href="#trilha">Trilha pronta →</a></nav>
-        </footer>
-      </section>
-      <section class="step" id="trilha">
-        <div class="step-meta"><span class="kicker">Exercício 05 · Opção com dados fictícios</span></div>
-        <h2>Trilha pronta: painel dos fundos</h2>
-        <p class="lead">Prefere não usar a sua caixa? Monte o agente do painel diário dos fundos, com dados inventados.</p>
-        <ol class="passos">
-          <li>Claude › Projetos › Novo projeto. Nome: <strong>Painel diário dos fundos</strong>. Cole as instruções.</li>
-          <li>Nos arquivos do projeto, suba os limites e a planilha. Chat novo: peça o painel.</li>
-          <li>Ligue o Outlook, crie a skill agendada e teste quando os e-mails de “Posição diária” chegarem.</li>
-          <li>Crie as skills de alerta e de resumo.</li>
-        </ol>
-        <div class="btn-row">
-          <a class="btn ghost" href="arquivos/limites-e-alertas-dos-fundos.md" download="01 Limites e alertas dos fundos.md">⬇ Baixar os limites <small>(.md)</small></a>
-          <a class="btn ghost" href="arquivos/posicao-dos-fundos.xlsx" download="Posição dos fundos 18-11-2026.xlsx">⬇ Baixar a planilha <small>(.xlsx)</small></a>
-          <a class="btn ghost" href="arquivos/Ex5-arquivos-do-projeto.zip" download="Ex5-arquivos-do-projeto.zip">⬇ Baixar tudo <small>(.zip)</small></a>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt 1</span><strong>Instruções do projeto</strong><button class="copy" type="button">Copiar</button></div>
-<pre>PAPEL
-Você é o analista de monitoramento dos fundos da gestora. Mantém o painel da diretoria sempre atualizado.
-
-RECURSOS
-- "Posição dos fundos": a planilha com a posição de ontem, nos arquivos do Projeto. É a base do primeiro painel.
-- Os e-mails com "Posição diária" no assunto, pelo conector do Outlook (só leitura), para as atualizações.
-- "01 Limites e alertas dos fundos": os limites e alertas da casa.
-
-AÇÃO
-- Monte o painel em um artefato: no topo, o que exige atenção; um card por fundo com semáforo; a tabela com os números; o PL consolidado.
-- Semáforo: o pior indicador do fundo define a cor. Vermelho acima de um limite, amarelo na faixa de atenção, verde no resto.
-- Calcule com código: inadimplência = vencido há mais de 30 dias ÷ carteira em aberto; concentração = exposição ÷ carteira em aberto; resgate relevante = resgates do dia ÷ PL do dia útil anterior.
-- A cada atualização, compare com a posição anterior (o e-mail do dia útil anterior ou, na primeira vez, a planilha) e diga o que mudou.
-- As skills de alerta e de resumo usam o painel já atualizado. Alertas e resumo saem no chat.
-
-TOM
-Direto, para a diretoria. R$ em milhões com duas casas (R$ 46,88 mi). Percentuais com uma casa (9,7%).
-
-O QUE NÃO FAZER
-- Não responda, encaminhe nem envie e-mail. Alerta é rascunho para revisão humana.
-- Não invente número que não veio na planilha ou no e-mail.</pre>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt 2</span><strong>O pedido do painel</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Monte o painel dos fundos para a diretoria em um artefato, com a planilha do Projeto:
-- no topo, o que exige atenção hoje;
-- um card por fundo, com semáforo;
-- a tabela com os números de cada fundo;
-- o PL consolidado.</pre>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt 3</span><strong>A skill agendada</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Crie uma skill chamada atualizar-painel-fundos.
-Ela lê no meu e-mail as mensagens com "Posição diária" no assunto, atualiza o painel com a posição nova e diz o que mudou desde a última posição.
-Depois, agende essa skill para todo dia útil às 8h.
-Não responda nem envie nenhum e-mail.</pre>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt 4</span><strong>O teste</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Rode agora a atualização do painel com os e-mails de hoje.</pre>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt 5</span><strong>Skill de alerta</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Crie uma skill chamada alerta-de-limite.
-Quando um fundo passar de um limite do arquivo de limites, ou tiver um resgate relevante, ela escreve o rascunho do alerta para quem deve receber: fundo, indicador, valor, limite e ação recomendada.
-É só rascunho: nunca envie.
-Agende para todo dia útil às 8h15 e rode agora.</pre>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt 6</span><strong>Skill do resumo</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Crie uma skill chamada resumo-da-diretoria.
-Ela resume o painel do dia em até 5 linhas: primeiro o que exige decisão, depois o que mudou e, por último, o PL consolidado. Sem tabela.
-Agende para todo dia útil às 8h30 e rode agora.</pre>
-        </div>
-        <footer class="step-foot">
-          <nav class="pn"><a href="#p4">← Mais tarefas</a><a class="next" href="#ex6">Matriz de priorização →</a></nav>
-        </footer>
-      </section>
       <section class="step" id="ex6">
         <div class="step-meta"><span class="kicker">Exercício 06</span></div>
         <h2>Matriz de priorização da sua área</h2>
         <p class="lead">O Claude entrevista você, levanta as tarefas da sua área e monta a matriz impacto × esforço no visual do modelo.</p>
         <ol class="passos">
-          <li>Baixe o modelo da matriz.</li>
-          <li>Abra um chat novo no Claude e anexe o modelo.</li>
-          <li>Copie o prompt, troque [cargo] e [área] pelos seus e envie.</li>
+          <li>Preencha os seus dados na caixa abaixo. O prompt se ajusta sozinho.</li>
+          <li>Baixe o modelo da matriz e o prompt.</li>
+          <li>Abra um chat novo no Claude, anexe o modelo e cole o prompt.</li>
         </ol>
+        <form class="dados" id="dados" autocomplete="off" onsubmit="return false">
+          <h3>Seus dados</h3>
+          <div class="campos">
+            <label>Nome<input type="text" id="f-nome" maxlength="60" placeholder="Ex.: Ana Souza"></label>
+            <label>Cargo<input type="text" id="f-cargo" maxlength="60" placeholder="Ex.: coordenadora"></label>
+            <label>Área<input type="text" id="f-area" maxlength="60" placeholder="Ex.: Crédito"></label>
+            <label class="larga">O que você faz no dia a dia<textarea id="f-faz" rows="3" maxlength="600" placeholder="Ex.: analiso cedentes, acompanho a carteira e preparo o material do comitê de crédito."></textarea></label>
+          </div>
+          <p class="aviso-dados" id="aviso-dados" hidden>Preencha pelo menos cargo e área para baixar o prompt.</p>
+        </form>
         <div class="btn-row">
+          <button class="btn primary" type="button" id="baixar-prompt">⬇ Baixar o prompt <small>(.txt)</small></button>
           <a class="btn ghost" href="arquivos/modelo-da-matriz.html" download="Modelo da matriz.html">⬇ Baixar o modelo da matriz <small>(.html)</small></a>
         </div>
         <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
-<pre>Quero preencher a matriz de priorização da minha área.
+          <div class="prompt-head"><span class="label">Prompt</span><strong>já com os seus dados</strong><button class="copy" type="button">Copiar</button></div>
+<pre id="prompt-matriz">Quero preencher a matriz de priorização da minha área.
 Sou [cargo] da área de [área] em uma gestora de FIDCs.
 Anexei o arquivo "Modelo da matriz.html": é o visual que a matriz deve ter no fim.
 
@@ -466,7 +260,7 @@ REGRAS
 - Em "por onde começar", diga qual tarefa de Priorizar vem primeiro e por quê.</pre>
         </div>
         <footer class="step-foot">
-          <nav class="pn"><a href="#trilha">← Trilha pronta</a><a class="next" href="#canvas">Canvas do agente →</a></nav>
+          <nav class="pn"><a class="next" href="#canvas">Canvas do agente →</a></nav>
         </footer>
       </section>
       <section class="step" id="canvas">
@@ -497,41 +291,7 @@ REGRAS
    O · O que não fazer:</pre>
         </div>
         <footer class="step-foot">
-          <nav class="pn"><a href="#ex6">← Matriz de priorização</a><a class="next" href="#ex7">CFO cético →</a></nav>
-        </footer>
-      </section>
-      <section class="step" id="ex7">
-        <div class="step-meta"><span class="kicker">Exercício 07</span></div>
-        <h2>Defenda o seu caso para um CFO cético</h2>
-        <p class="lead">Escreva o business case em 5 linhas do processo que ficou em Priorizar. Depois peça ao Claude a crítica de quem assina o cheque.</p>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Modelo</span><strong>O business case em 5 linhas</strong><button class="copy" type="button">Copiar</button></div>
-<pre>BUSINESS CASE · [nome do processo]
-
-1. Dor: o que dói hoje, com número.
-
-2. Como é hoje: tempo, prazo e erros (a linha de base).
-
-3. Ganho e destino: qual ganho (tempo, prazo, risco ou capacidade) e para onde vai a hora liberada.
-
-4. Métrica e contramétrica: o que prova que funcionou e o que não pode piorar.
-
-5. Custo e uso: licenças, horas para montar e como a TI vê o uso.</pre>
-        </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt</span><strong>O CFO cético</strong><button class="copy" type="button">Copiar</button></div>
-<pre>Você é o CFO de uma gestora de FIDCs: cético, direto e sem paciência para promessa.
-Leia o business case abaixo e:
-1. Faça as 3 perguntas mais duras que você faria antes de aprovar.
-2. Aponte onde estou medindo atividade em vez de resultado e qual contramétrica falta.
-3. Dê o veredito: aprova, aprova com condições ou reprova.
-Não reescreva o caso por mim. Seja breve.
-
-[cole aqui as suas 5 linhas]</pre>
-        </div>
-        <p class="depois">Responda à pergunta mais dura e revise um número e a contramétrica.</p>
-        <footer class="step-foot">
-          <nav class="pn"><a href="#canvas">← Canvas do agente</a></nav>
+          <nav class="pn"><a href="#ex6">← Matriz de priorização</a></nav>
         </footer>
       </section>
 
@@ -544,8 +304,8 @@ Não reescreva o caso por mim. Seja breve.
   var steps = [].slice.call(document.querySelectorAll(".step"));
   var links = [].slice.call(document.querySelectorAll(".sidebar nav a"));
   function mostrar() {
-    var id = (location.hash || "#inicio").slice(1);
-    if (!document.getElementById(id) || !document.getElementById(id).classList.contains("step")) id = "inicio";
+    var id = (location.hash || "#ex6").slice(1);
+    if (!document.getElementById(id) || !document.getElementById(id).classList.contains("step")) id = "ex6";
     steps.forEach(function (s) { s.classList.toggle("active", s.id === id); });
     links.forEach(function (a) { a.classList.toggle("is-active", a.getAttribute("href") === "#" + id); });
     document.body.classList.remove("nav-open");
@@ -560,6 +320,49 @@ Não reescreva o caso por mim. Seja breve.
       document.querySelectorAll(".opc").forEach(function (x) { var on = x === b; x.classList.toggle("is-on", on); x.setAttribute("aria-selected", on ? "true" : "false"); });
       document.querySelectorAll(".opcao").forEach(function (x) { x.hidden = x.getAttribute("data-opc") !== o; });
     });
+  });
+
+
+  // ---------- dados da pessoa no prompt ----------
+  var pre = document.getElementById("prompt-matriz");
+  var base = pre.textContent;
+  var LINHA = "Sou [cargo] da área de [área] em uma gestora de FIDCs.";
+  var campos = { nome: "f-nome", cargo: "f-cargo", area: "f-area", faz: "f-faz" };
+  function val(k) { return document.getElementById(campos[k]).value.replace(/\s+/g, " ").trim(); }
+  function montar() {
+    var nome = val("nome"), cargo = val("cargo"), area = val("area"), faz = val("faz");
+    var cab = (nome ? "Meu nome é " + nome + ". " : "") + "Sou " + (cargo || "[cargo]") + " da área de " + (area || "[área]") + " em uma gestora de FIDCs.";
+    if (faz) cab += "\nNo dia a dia, o que eu faço: " + faz.replace(/[.\s]+$/, "") + ".";
+    return base.replace(LINHA, cab);
+  }
+  function atualizar() {
+    pre.textContent = montar();
+    try { localStorage.setItem("ex6-dados", JSON.stringify({ nome: val("nome"), cargo: val("cargo"), area: val("area"), faz: document.getElementById("f-faz").value })); } catch (e) {}
+  }
+  try {
+    var salvo = JSON.parse(localStorage.getItem("ex6-dados") || "null");
+    if (salvo) Object.keys(campos).forEach(function (k) { if (salvo[k]) document.getElementById(campos[k]).value = salvo[k]; });
+  } catch (e) {}
+  Object.keys(campos).forEach(function (k) {
+    document.getElementById(campos[k]).addEventListener("input", function (ev) { ev.target.classList.remove("falta"); document.getElementById("aviso-dados").hidden = true; atualizar(); });
+  });
+  atualizar();
+
+  document.getElementById("baixar-prompt").addEventListener("click", function () {
+    var faltam = ["cargo", "area"].filter(function (k) { return !val(k); });
+    if (faltam.length) {
+      faltam.forEach(function (k) { document.getElementById(campos[k]).classList.add("falta"); });
+      document.getElementById("aviso-dados").hidden = false;
+      document.getElementById(campos[faltam[0]]).focus();
+      return;
+    }
+    var nome = val("nome").replace(/[\\/:*?"<>|]/g, "").slice(0, 40);
+    var arquivo = "Prompt da matriz" + (nome ? " - " + nome : "") + ".txt";
+    var blob = new Blob([montar()], { type: "text/plain;charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = arquivo;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
   });
 
   var toggle = document.querySelector(".menu-toggle");
