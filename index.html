@@ -161,18 +161,19 @@ details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
     <nav>
       <p class="group">Começo</p>
       <a href="#inicio"><span class="n">—</span><span>Materiais do dia</span></a>
-      <p class="group">Exercício 05 · Agente do painel</p>
-      <a href="#p1"><span class="n">01</span><span>Crie o agente</span></a>
-      <a href="#p2"><span class="n">02</span><span>Agende a skill</span></a>
-      <a href="#p3"><span class="n">03</span><span>Teste com os e-mails</span></a>
-      <a href="#p4"><span class="n">04</span><span>Mais skills</span></a>
+      <p class="group">Exercício 05 · O seu assistente</p>
+      <a href="#p1"><span class="n">01</span><span>Crie o assistente</span></a>
+      <a href="#p2"><span class="n">02</span><span>Escolha a tarefa</span></a>
+      <a href="#p3"><span class="n">03</span><span>Ajuste e agende</span></a>
+      <a href="#p4"><span class="n">04</span><span>Mais tarefas</span></a>
+      <a href="#trilha"><span class="n">—</span><span>Trilha pronta: painel dos fundos</span></a>
       <p class="group">Exercício 06 · Sua área</p>
       <a href="#ex6"><span class="n">—</span><span>Matriz de priorização</span></a>
       <a href="#canvas"><span class="n">—</span><span>Canvas do agente</span></a>
       <p class="group">Exercício 07 · Retorno</p>
       <a href="#ex7"><span class="n">—</span><span>CFO cético</span></a>
     </nav>
-    <div class="side-box"><strong>Dados fictícios.</strong> Os fundos, os administradores e os números dos exercícios são inventados.</div>
+    <div class="side-box"><strong>Só leitura.</strong> O assistente lê a sua caixa, mas não responde nem envia e-mail. Na trilha pronta, os dados são inventados.</div>
   </aside>
   <div class="overlay" id="overlay"></div>
 
@@ -184,10 +185,11 @@ details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
         <h1>Claude Workshop · 19/11</h1>
         <p class="lead">Os prompts e os arquivos dos exercícios. Escolha o passo no menu, clique em <strong>Copiar</strong> e cole no Claude.</p>
         <div class="cards">
-          <a href="#p1"><span class="part">EXERCÍCIO 05 · PASSO 1</span><h4>Crie o agente</h4><p>O Projeto, as instruções e o primeiro painel.</p></a>
-          <a href="#p2"><span class="part">EXERCÍCIO 05 · PASSO 2</span><h4>Agende a skill</h4><p>O painel se atualiza pelo e-mail, todo dia às 8h.</p></a>
-          <a href="#p3"><span class="part">EXERCÍCIO 05 · PASSO 3</span><h4>Teste com os e-mails</h4><p>Os e-mails de hoje chegam e o painel muda.</p></a>
-          <a href="#p4"><span class="part">EXERCÍCIO 05 · PASSO 4</span><h4>Mais skills</h4><p>Alerta de limite e resumo da diretoria.</p></a>
+          <a href="#p1"><span class="part">EXERCÍCIO 05 · PASSO 1</span><h4>Crie o seu assistente</h4><p>4 perguntas e o Claude escreve as instruções.</p></a>
+          <a href="#p2"><span class="part">EXERCÍCIO 05 · PASSO 2</span><h4>Escolha a tarefa</h4><p>Um cardápio com 6 tarefas prontas.</p></a>
+          <a href="#p3"><span class="part">EXERCÍCIO 05 · PASSO 3</span><h4>Ajuste e agende</h4><p>Corrija na skill e ponha para rodar sozinha.</p></a>
+          <a href="#p4"><span class="part">EXERCÍCIO 05 · PASSO 4</span><h4>Mais tarefas</h4><p>Outra do cardápio, ou a sua.</p></a>
+          <a href="#trilha"><span class="part">EXERCÍCIO 05 · OPÇÃO</span><h4>Trilha pronta</h4><p>O painel dos fundos, com dados fictícios.</p></a>
           <a href="#ex6"><span class="part">EXERCÍCIO 06</span><h4>Matriz de priorização</h4><p>As tarefas da sua área em impacto × esforço.</p></a>
           <a href="#canvas"><span class="part">EXERCÍCIO 06</span><h4>Canvas do agente</h4><p>Para a tarefa que ficou em Priorizar.</p></a>
           <a href="#ex7"><span class="part">EXERCÍCIO 07</span><h4>CFO cético</h4><p>O business case em 5 linhas e a crítica.</p></a>
@@ -199,13 +201,141 @@ details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 
       <section class="step" id="p1">
         <div class="step-meta"><span class="kicker">Exercício 05 · Passo 1 de 4</span></div>
-        <h2>Crie o agente e o primeiro painel</h2>
-        <p class="lead">Um Projeto com as instruções, os limites e a planilha da posição de ontem. Ela vira a primeira tela da diretoria.</p>
+        <h2>Crie o seu assistente</h2>
+        <p class="lead">O Claude entrevista você em 4 perguntas e escreve as instruções do seu Projeto.</p>
         <ol class="passos">
-          <li>Claude › Projetos › Novo projeto. Nome: <strong>Painel diário dos fundos</strong>.</li>
-          <li>Em Instruções do projeto, cole o texto abaixo.</li>
-          <li>Nos arquivos do projeto, suba os limites e a planilha.</li>
-          <li>No Projeto, abra um chat novo e cole o pedido do painel.</li>
+          <li>Abra um chat novo no Claude, cole o prompt e responda curto.</li>
+          <li>Claude › Projetos › Novo projeto. Nome: <strong>Meu assistente</strong>.</li>
+          <li>Em Instruções do projeto, cole o texto que o Claude escreveu.</li>
+          <li>Ligue o conector do Outlook (só leitura).</li>
+        </ol>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+<pre>Quero montar um Projeto no Claude que funcione como o meu assistente: ele lê a minha caixa de e-mail, só para leitura, e faz tarefas para mim.
+
+Me faça 4 perguntas, uma por vez, e espere a minha resposta antes da próxima:
+1. Qual é o seu cargo e a sua área, e o que você acompanha no dia a dia?
+2. Quais pessoas e assuntos não podem esperar? Por exemplo: diretoria, cotistas, comitê, um fundo ou um projeto.
+3. O que costuma se perder na sua caixa ou tomar o seu tempo?
+4. Como você quer receber as entregas? Curtas ou detalhadas, em lista ou em tabela.
+
+No fim, escreva as instruções do Projeto, prontas para eu colar, com até 1.500 caracteres, neste formato:
+PAPEL: quem é o assistente e para quem trabalha.
+RECURSOS: a minha caixa de e-mail, pelo conector do Outlook (só leitura).
+AÇÃO: o que ele prioriza e como decide o que é importante, a partir das minhas respostas.
+TOM: como eu quero receber as entregas.
+O QUE NÃO FAZER: nunca responder, encaminhar, enviar nem apagar e-mail. Não inventar o que não está nos e-mails. Rascunho, só no chat.
+
+Se uma resposta minha vier curta, siga em frente.</pre>
+        </div>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#inicio">← Início</a><a class="next" href="#p2">Escolha a tarefa →</a></nav>
+        </footer>
+      </section>
+      <section class="step" id="p2">
+        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 2 de 4</span></div>
+        <h2>Escolha a primeira tarefa</h2>
+        <p class="lead">Cada tarefa do cardápio vira uma skill. Escolha uma, copie o pedido e cole em um chat novo, dentro do seu Projeto. Ela já roda com a sua caixa.</p>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">A</span><strong>Triagem da caixa</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Crie uma skill chamada triagem-da-caixa.
+Ela lê os e-mails que recebi nos últimos 7 dias, confere nos enviados o que eu já respondi e monta um painel em um artefato, com três blocos:
+1. O que chegou: cada e-mail em uma linha, agrupado por assunto.
+2. O que é importante: o que tem prazo, pede uma ação minha ou vem das pessoas e dos assuntos prioritários. Diga o porquê.
+3. O que eu ainda não respondi: e-mails que pedem resposta, do mais antigo para o mais novo.
+No topo, liste o que eu preciso fazer hoje, do mais urgente para o menos urgente.
+Não responda nem envie nenhum e-mail.
+Rode agora e me mostre o resultado.</pre>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">B</span><strong>Minhas pendências</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Crie uma skill chamada minhas-pendencias.
+Ela lê os e-mails recebidos e enviados dos últimos 14 dias e monta duas listas em um artefato:
+1. O que eu pedi e ainda não responderam: para quem, o quê e desde quando.
+2. O que me pediram e eu ainda não entreguei: quem pediu, o quê e o prazo, se houver.
+Ordene do mais antigo para o mais novo e destaque o que está parado há mais de 5 dias.
+Não responda nem envie nenhum e-mail.
+Rode agora e me mostre o resultado.</pre>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">C</span><strong>Radar de um assunto</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Crie uma skill chamada radar-do-assunto.
+Ela lê os e-mails dos últimos 7 dias sobre [um fundo, um cedente, um cliente ou um projeto] e monta um painel em um artefato: o que aconteceu, as decisões tomadas, o que está em aberto e com quem, e os próximos prazos.
+Não responda nem envie nenhum e-mail.
+Rode agora e me mostre o resultado.</pre>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">D</span><strong>Resumo da semana</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Crie uma skill chamada resumo-da-semana.
+Ela lê os e-mails que recebi e enviei nos últimos 7 dias e escreve o rascunho do resumo semanal da minha área para a diretoria, em até 10 linhas: o que foi entregue, o que está em andamento, os riscos e o que precisa de decisão.
+É só rascunho, aqui no chat. Não responda nem envie nenhum e-mail.
+Rode agora e me mostre o resultado.</pre>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">E</span><strong>Preparar as reuniões</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Crie uma skill chamada preparar-reunioes.
+Ela olha as reuniões de hoje na minha agenda e, para cada uma, busca os e-mails recentes com os participantes ou sobre o assunto. Entregue, por reunião: o contexto em 3 linhas, o que ficou pendente da última conversa e 2 perguntas que eu deveria fazer.
+Se não conseguir ler a agenda, me avise e não invente reuniões.
+Não responda nem envie nenhum e-mail.
+Rode agora e me mostre o resultado.</pre>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">F</span><strong>Radar de mercado</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Crie uma skill chamada radar-de-mercado.
+Ela busca na web as notícias dos últimos 7 dias sobre FIDCs e crédito privado no Brasil e entrega as 5 mais relevantes para a minha área: título, fonte, link e, em uma linha, por que importa.
+Se a busca na web não estiver disponível, me avise e não invente notícias.
+Rode agora e me mostre o resultado.</pre>
+        </div>
+        <p class="depois">Salve a skill e confira um item do resultado na sua caixa.</p>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#p1">← Crie o assistente</a><a class="next" href="#p3">Ajuste e agende →</a></nav>
+        </footer>
+      </section>
+      <section class="step" id="p3">
+        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 3 de 4</span></div>
+        <h2>Ajuste e agende</h2>
+        <p class="lead">O que não ficou bom, você corrige na skill, e não no chat. Depois ela passa a rodar sozinha.</p>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt 1</span><strong>Ajuste e grave na skill</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Ajuste: [diga o que mudar, por exemplo: "deixe de fora as newsletters" ou "comece pelo que vem da diretoria"].
+Grave essa correção na skill, para valer nas próximas vezes, e rode de novo.</pre>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt 2</span><strong>Agende</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Agende essa skill para rodar todo dia útil às 8h, aqui neste Projeto.
+Em cada execução, mostre o resultado em um artefato e diga o que mudou desde a última vez.
+Não responda nem envie nenhum e-mail.</pre>
+        </div>
+        <p class="depois">Troque o horário se fizer sentido: o resumo da semana, por exemplo, pode rodar toda sexta às 16h. Se não aparecer a opção de agendar, siga sem essa parte: você roda a skill na mão.</p>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#p2">← Escolha a tarefa</a><a class="next" href="#p4">Mais tarefas →</a></nav>
+        </footer>
+      </section>
+      <section class="step" id="p4">
+        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 4 de 4</span></div>
+        <h2>Dê mais tarefas ao assistente</h2>
+        <p class="lead">Volte ao cardápio do passo 2 e escolha outra tarefa. Ou escreva a sua, no molde abaixo.</p>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Molde</span><strong>A sua própria tarefa</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Crie uma skill chamada [nome].
+Ela lê [o quê, de que período] e entrega [o quê, em que formato].
+Não responda nem envie nenhum e-mail.
+Rode agora e me mostre o resultado.</pre>
+        </div>
+        <div class="btn-row"><a class="btn ghost" href="#p2">← Voltar ao cardápio</a></div>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#p3">← Ajuste e agende</a><a class="next" href="#trilha">Trilha pronta →</a></nav>
+        </footer>
+      </section>
+      <section class="step" id="trilha">
+        <div class="step-meta"><span class="kicker">Exercício 05 · Opção com dados fictícios</span></div>
+        <h2>Trilha pronta: painel dos fundos</h2>
+        <p class="lead">Prefere não usar a sua caixa? Monte o agente do painel diário dos fundos, com dados inventados.</p>
+        <ol class="passos">
+          <li>Claude › Projetos › Novo projeto. Nome: <strong>Painel diário dos fundos</strong>. Cole as instruções.</li>
+          <li>Nos arquivos do projeto, suba os limites e a planilha. Chat novo: peça o painel.</li>
+          <li>Ligue o Outlook, crie a skill agendada e teste quando os e-mails de “Posição diária” chegarem.</li>
+          <li>Crie as skills de alerta e de resumo.</li>
         </ol>
         <div class="btn-row">
           <a class="btn ghost" href="arquivos/limites-e-alertas-dos-fundos.md" download="01 Limites e alertas dos fundos.md">⬇ Baixar os limites <small>(.md)</small></a>
@@ -244,58 +374,32 @@ O QUE NÃO FAZER
 - a tabela com os números de cada fundo;
 - o PL consolidado.</pre>
         </div>
-        <footer class="step-foot">
-          <nav class="pn"><a href="#inicio">← Início</a><a class="next" href="#p2">Agende a skill →</a></nav>
-        </footer>
-      </section>
-      <section class="step" id="p2">
-        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 2 de 4</span></div>
-        <h2>Crie a skill que atualiza o painel</h2>
-        <p class="lead">Ligue o conector do Outlook. A skill busca a posição nova no e-mail e atualiza o painel no horário que você definir.</p>
         <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+          <div class="prompt-head"><span class="label">Prompt 3</span><strong>A skill agendada</strong><button class="copy" type="button">Copiar</button></div>
 <pre>Crie uma skill chamada atualizar-painel-fundos.
 Ela lê no meu e-mail as mensagens com "Posição diária" no assunto, atualiza o painel com a posição nova e diz o que mudou desde a última posição.
 Depois, agende essa skill para todo dia útil às 8h.
 Não responda nem envie nenhum e-mail.</pre>
         </div>
-        <p class="depois">Confira o agendamento: todo dia útil às 8h. Se não aparecer a opção de agendar, siga sem essa parte: você roda a skill na mão.</p>
-        <footer class="step-foot">
-          <nav class="pn"><a href="#p1">← Crie o agente</a><a class="next" href="#p3">Teste com os e-mails →</a></nav>
-        </footer>
-      </section>
-      <section class="step" id="p3">
-        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 3 de 4</span></div>
-        <h2>Teste com os e-mails de hoje</h2>
-        <p class="lead">Espere chegarem os 3 e-mails com “Posição diária” no assunto. Depois rode a tarefa e veja o painel se atualizar.</p>
         <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+          <div class="prompt-head"><span class="label">Prompt 4</span><strong>O teste</strong><button class="copy" type="button">Copiar</button></div>
 <pre>Rode agora a atualização do painel com os e-mails de hoje.</pre>
         </div>
-        <p class="depois">Veja no painel o que mudou desde ontem.</p>
-        <footer class="step-foot">
-          <nav class="pn"><a href="#p2">← Agende a skill</a><a class="next" href="#p4">Mais skills →</a></nav>
-        </footer>
-      </section>
-      <section class="step" id="p4">
-        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 4 de 4</span></div>
-        <h2>Mais skills, mais horários</h2>
-        <p class="lead">O mesmo agente ganha novas tarefas: um alerta quando um limite estoura e o resumo do dia para a diretoria.</p>
         <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt 1</span><strong>Skill de alerta</strong><button class="copy" type="button">Copiar</button></div>
+          <div class="prompt-head"><span class="label">Prompt 5</span><strong>Skill de alerta</strong><button class="copy" type="button">Copiar</button></div>
 <pre>Crie uma skill chamada alerta-de-limite.
 Quando um fundo passar de um limite do arquivo de limites, ou tiver um resgate relevante, ela escreve o rascunho do alerta para quem deve receber: fundo, indicador, valor, limite e ação recomendada.
 É só rascunho: nunca envie.
 Agende para todo dia útil às 8h15 e rode agora.</pre>
         </div>
         <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt 2</span><strong>Skill do resumo</strong><button class="copy" type="button">Copiar</button></div>
+          <div class="prompt-head"><span class="label">Prompt 6</span><strong>Skill do resumo</strong><button class="copy" type="button">Copiar</button></div>
 <pre>Crie uma skill chamada resumo-da-diretoria.
 Ela resume o painel do dia em até 5 linhas: primeiro o que exige decisão, depois o que mudou e, por último, o PL consolidado. Sem tabela.
 Agende para todo dia útil às 8h30 e rode agora.</pre>
         </div>
         <footer class="step-foot">
-          <nav class="pn"><a href="#p3">← Teste com os e-mails</a><a class="next" href="#ex6">Matriz de priorização →</a></nav>
+          <nav class="pn"><a href="#p4">← Mais tarefas</a><a class="next" href="#ex6">Matriz de priorização →</a></nav>
         </footer>
       </section>
       <section class="step" id="ex6">
@@ -362,7 +466,7 @@ REGRAS
 - Em "por onde começar", diga qual tarefa de Priorizar vem primeiro e por quê.</pre>
         </div>
         <footer class="step-foot">
-          <nav class="pn"><a href="#p4">← Mais skills</a><a class="next" href="#canvas">Canvas do agente →</a></nav>
+          <nav class="pn"><a href="#trilha">← Trilha pronta</a><a class="next" href="#canvas">Canvas do agente →</a></nav>
         </footer>
       </section>
       <section class="step" id="canvas">
