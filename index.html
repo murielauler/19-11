@@ -298,11 +298,20 @@ Agende para todo dia útil às 8h30 e rode agora.</pre>
       <section class="step" id="ex6">
         <div class="step-meta"><span class="kicker">Exercício 06</span></div>
         <h2>Matriz de priorização da sua área</h2>
-        <p class="lead">O Claude entrevista você, levanta as tarefas da sua área e monta a matriz impacto × esforço em um artefato.</p>
+        <p class="lead">O Claude entrevista você, levanta as tarefas da sua área e monta a matriz impacto × esforço no visual do modelo.</p>
+        <ol class="passos">
+          <li>Baixe o modelo da matriz.</li>
+          <li>Abra um chat novo no Claude e anexe o modelo.</li>
+          <li>Copie o prompt, troque [cargo] e [área] pelos seus e envie.</li>
+        </ol>
+        <div class="btn-row">
+          <a class="btn ghost" href="arquivos/modelo-da-matriz.html" download="Modelo da matriz.html">⬇ Baixar o modelo da matriz <small>(.html)</small></a>
+        </div>
         <div class="prompt">
           <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
 <pre>Quero preencher a matriz de priorização da minha área.
 Sou [cargo] da área de [área] em uma gestora de FIDCs.
+Anexei o arquivo "Modelo da matriz.html": é o visual que a matriz deve ter no fim.
 
 COMO É A MATRIZ
 Ela tem dois eixos:
@@ -317,35 +326,38 @@ E quatro quadrantes:
 
 ETAPA 1 · LEVANTAR AS TAREFAS
 Me entreviste para levantar de 6 a 8 tarefas da minha área que se repetem.
-Faça uma pergunta por vez e espere a minha resposta. Use estas perguntas, nesta ordem:
+Faça uma pergunta por vez e espere a minha resposta. Use estas perguntas, nesta ordem, e pule a que eu já tiver respondido:
 1. Quais entregas a sua área faz toda semana ou todo mês?
 2. O que mais toma tempo do time?
 3. Onde acontece mais erro ou retrabalho?
 4. O que vive atrasando ou depende de uma pessoa só?
 5. Que informação vocês copiam de um lugar para outro na mão?
 Se eu citar um processo grande, me ajude a quebrar em tarefas. Uma tarefa tem começo, meio e fim: algo entra, alguém analisa e algo sai.
-Quando tiver de 6 a 8 tarefas, me mostre a lista numerada e pergunte se falta ou sobra alguma.
+Dê a cada tarefa um nome curto, de até 5 palavras.
+Quando tiver de 6 a 8 tarefas, pare de perguntar, me mostre a lista numerada e pergunte se falta ou sobra alguma.
 
 ETAPA 2 · AVALIAR CADA TAREFA
-Passe pela lista, uma tarefa por mensagem. Em cada uma, faça estas quatro perguntas juntas:
-a) Quantas vezes por mês ela roda e quanto tempo leva?
-b) O que acontece quando ela atrasa ou sai errada?
-c) O que a área ganharia se ela ficasse mais rápida ou sem erro?
-d) Os dados estão em arquivos e e-mails que eu acesso, ou em sistemas que dependem da TI?
+Passe pela lista, uma tarefa por mensagem. Em cada uma, faça estas três perguntas juntas:
+a) Quantas vezes ela roda, por mês ou por ano, e quanto tempo leva?
+b) O que acontece quando ela atrasa ou sai errada? E o que a área ganharia se ela melhorasse?
+c) Os dados estão em arquivos e e-mails que eu acesso, ou em sistemas que dependem da TI?
 
 ETAPA 3 · MONTAR A MATRIZ
-Com as minhas respostas, classifique cada tarefa em impacto (alto ou baixo) e esforço (alto ou baixo). Depois monte um artefato com:
-- a matriz 2 × 2, com o nome dos quadrantes e cada tarefa no seu lugar;
-- embaixo, uma tabela com: tarefa, frequência, impacto, esforço, quadrante e o motivo em uma linha;
-- um aviso nas tarefas em que o erro é caro, irreversível, regulado ou envolve dado sensível: nelas, uma pessoa sempre revisa.
+Com as minhas respostas, classifique cada tarefa:
+- Impacto alto: toma muitas horas do time no mês, ou o erro e o atraso chegam a cliente, a regulador ou a dinheiro. Senão, baixo.
+- Esforço alto: os dados estão em sistemas que dependem da TI, ou é preciso integrar sistemas ou mudar o processo. Senão, baixo.
+Depois monte um artefato em HTML a partir do modelo anexado:
+- copie o modelo inteiro e mantenha o visual e a estrutura;
+- troque só o bloco DADOS no começo do script: área, data de hoje, tarefas e por onde começar;
+- em cada tarefa, o motivo cabe em uma linha;
+- use risco: true só quando um erro pode chegar a cliente, a regulador ou a um pagamento. O risco não muda o quadrante.
 
 REGRAS
 - Use só o que eu disser. Não invente tarefa nem número.
 - Se eu responder curto ou disser "pular", siga em frente.
 - Não sugira ainda como executar cada tarefa. Isso é o próximo passo.
-- No fim, diga quais 1 ou 2 tarefas ficaram em Priorizar e por quê.</pre>
+- Em "por onde começar", diga qual tarefa de Priorizar vem primeiro e por quê.</pre>
         </div>
-        <p class="depois">Troque [cargo] e [área] pelos seus antes de enviar.</p>
         <footer class="step-foot">
           <nav class="pn"><a href="#p4">← Mais skills</a><a class="next" href="#canvas">Canvas do agente →</a></nav>
         </footer>
