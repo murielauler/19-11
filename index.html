@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Workshop · 19/11</title>
+<meta name="description" content="Prompts e arquivos dos exercícios do workshop de Claude.">
+<style>
+:root {
+  --ink: #30251F;
+  --text: #3a2e27;
+  --muted: #755B4A;
+  --faint: #a8968a;
+  --accent: #EF701A;
+  --accent-ink: #c85a0f;
+  --accent-soft: #fde9da;
+  --accent-line: #f4c9a6;
+  --paper: #FFF9F1;
+  --white: #ffffff;
+  --line: #ece2d8;
+  --code-bg: #2b211c;
+  --code-fg: #f7ede4;
+  --topbar-h: 3.4rem;
+  --sidebar-w: 17rem;
+}
+* { box-sizing: border-box; }
+html { font-size: clamp(15px, min(1vw, 1.75vh), 22px); }
+body {
+  margin: 0; background: var(--paper); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+h1, h2, h3 { color: var(--ink); line-height: 1.25; margin: 0; }
+p { margin: 0; }
+button { font: inherit; }
+
+/* ---------- topo ---------- */
+.topbar { position: sticky; top: 0; z-index: 60; height: var(--topbar-h); display: flex; align-items: center; gap: 1rem; padding: 0 1.4rem; background: var(--ink); color: #fff; }
+.topbar .brand { display: flex; align-items: baseline; gap: .7rem; font-size: .95rem; font-weight: 700; white-space: nowrap; }
+.topbar .brand small { color: #e2c8b2; font-weight: 500; }
+.menu-toggle { display: none; border: 1px solid rgb(255 255 255 / 30%); border-radius: .5rem; background: transparent; color: #fff; padding: .3rem .7rem; font-size: .9rem; cursor: pointer; }
+
+/* ---------- layout ---------- */
+.layout { display: grid; grid-template-columns: var(--sidebar-w) minmax(0, 1fr); min-height: calc(100vh - var(--topbar-h)); }
+.sidebar { position: sticky; top: var(--topbar-h); align-self: start; height: calc(100vh - var(--topbar-h)); overflow-y: auto; border-right: 1px solid var(--line); background: #fff; padding: 1.4rem 1rem 2rem; }
+.sidebar .group { margin: 1.1rem .7rem .4rem; font-size: .72rem; font-weight: 800; letter-spacing: .12em; color: var(--faint); text-transform: uppercase; }
+.sidebar .group:first-child { margin-top: .2rem; }
+.sidebar nav a { display: grid; grid-template-columns: 1.8rem 1fr; align-items: center; gap: .4rem; padding: .5rem .7rem; border-radius: .55rem; color: var(--muted); text-decoration: none; font-size: .95rem; border-left: 3px solid transparent; }
+.sidebar nav a .n { font-size: .8rem; font-weight: 800; color: var(--faint); }
+.sidebar nav a:hover { background: var(--paper); color: var(--ink); }
+.sidebar nav a.is-active { background: var(--accent-soft); color: var(--accent-ink); font-weight: 700; border-left-color: var(--accent); }
+.sidebar nav a.is-active .n { color: var(--accent); }
+.side-links { margin: 1.4rem .4rem 0; display: grid; gap: .5rem; }
+.side-links a { display: flex; align-items: center; gap: .5rem; padding: .55rem .75rem; border-radius: .55rem; border: 1px solid var(--accent-line); background: var(--accent-soft); color: var(--accent-ink); font-size: .85rem; font-weight: 700; text-decoration: none; }
+.side-links a:hover { background: #fbdcc4; }
+.side-links a small { margin-left: auto; font-weight: 500; color: var(--muted); }
+.side-box { margin: 1.1rem .4rem 0; padding: .7rem .85rem; border-radius: .7rem; background: var(--paper); border: 1px solid var(--line); font-size: .82rem; color: var(--muted); line-height: 1.5; }
+.side-box strong { color: var(--ink); }
+
+main { min-width: 0; }
+.content { max-width: 54rem; margin: 0 auto; padding: 2.4rem 3rem 5rem; }
+
+/* ---------- etapas ---------- */
+.step { display: none; }
+.step.active { display: block; }
+.step-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-bottom: .6rem; }
+.kicker { font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.tag { display: inline-flex; align-items: center; border-radius: 999px; padding: .15rem .6rem; font-size: .75rem; font-weight: 700; background: var(--accent-soft); color: var(--accent-ink); }
+h1 { font-size: 1.9rem; letter-spacing: -.015em; }
+.step h2 { font-size: 1.55rem; letter-spacing: -.01em; }
+.lead { margin-top: .6rem; color: var(--muted); font-size: 1.08rem; max-width: 44rem; }
+
+.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.6rem; }
+.cards a { display: block; border: 1px solid var(--line); border-radius: .9rem; background: #fff; padding: 1.1rem 1.25rem; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
+.cards a:hover { border-color: var(--accent); transform: translateY(-1px); }
+.cards .part { font-size: .78rem; font-weight: 800; letter-spacing: .1em; color: var(--accent); }
+.cards h4 { margin: .3rem 0 .35rem; font-size: 1.05rem; color: var(--ink); }
+.cards p { color: var(--muted); font-size: .9rem; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.3rem; }
+.btn { display: inline-flex; align-items: center; gap: .5rem; border-radius: .6rem; padding: .65rem 1rem; font-size: .95rem; font-weight: 700; text-decoration: none; border: 1px solid transparent; cursor: pointer; }
+.btn.primary { background: var(--accent); color: #fff; }
+.btn.primary:hover { background: var(--accent-ink); }
+.btn.ghost { background: #fff; border-color: var(--accent-line); color: var(--accent-ink); }
+.btn.ghost:hover { border-color: var(--accent); background: var(--accent-soft); }
+.btn small { font-weight: 500; opacity: .75; }
+
+.prompt { margin-top: 1.4rem; border-radius: .8rem; overflow: hidden; background: var(--code-bg); color: var(--code-fg); }
+.prompt-head { display: flex; align-items: center; gap: .8rem; padding: .75rem 1.1rem; border-bottom: 1px solid rgb(255 255 255 / 12%); }
+.prompt-head .label { font-size: .75rem; font-weight: 800; letter-spacing: .12em; color: #f6a466; text-transform: uppercase; }
+.copy { margin-left: auto; border: 1px solid rgb(255 255 255 / 30%); border-radius: 999px; background: rgb(255 255 255 / 8%); color: #fff; padding: .4rem 1rem; font-size: .9rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.copy:hover { background: rgb(255 255 255 / 16%); }
+.copy.ok { border-color: #f6a466; color: #ffd2ad; }
+.prompt pre { margin: 0; padding: 1.05rem 1.2rem 1.2rem; font-family: inherit; font-size: 1rem; line-height: 1.65; white-space: pre-wrap; word-break: break-word; }
+
+.depois { margin-top: 1rem; border-left: 4px solid var(--accent); background: #fdf1e6; color: var(--text); border-radius: 0 .6rem .6rem 0; padding: .75rem 1rem; }
+.bloco { margin-top: 1.4rem; border: 1px solid var(--line); border-radius: .8rem; background: #fff; padding: 1rem 1.2rem; }
+.bloco h3 { font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); margin-bottom: .6rem; }
+ul.perguntas { margin: 0; padding: 0; list-style: none; display: grid; gap: .45rem; }
+ul.perguntas li { position: relative; padding-left: 1.3rem; }
+ul.perguntas li::before { content: "•"; position: absolute; left: .35rem; color: var(--accent); font-weight: 800; }
+
+.step-foot { display: flex; align-items: center; gap: .8rem; margin-top: 2.2rem; padding-top: 1.2rem; border-top: 1px dashed var(--line); }
+.pn { margin-left: auto; display: flex; gap: .6rem; }
+.pn a { display: inline-flex; align-items: center; gap: .4rem; padding: .5rem .85rem; border-radius: .55rem; border: 1px solid var(--line); background: #fff; font-size: .92rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+.pn a:hover { border-color: var(--accent); color: var(--accent); }
+.pn a.next { background: var(--accent); border-color: var(--accent); color: #fff; }
+.pn a.next:hover { background: var(--accent-ink); }
+.page-foot { margin-top: 2.6rem; font-size: .85rem; color: var(--faint); }
+
+ol.passos { margin: 1.3rem 0 0; padding: 0; list-style: none; counter-reset: ps; display: grid; gap: .6rem; }
+ol.passos li { position: relative; padding-left: 2.2rem; counter-increment: ps; }
+ol.passos li::before { content: counter(ps); position: absolute; left: 0; top: .05rem; width: 1.5rem; height: 1.5rem; display: grid; place-items: center; border-radius: .4rem; background: var(--accent-soft); color: var(--accent); font-size: .8rem; font-weight: 800; }
+details.docs { margin-top: .8rem; }
+details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.dl-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .7rem; }
+.dl-row a { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid var(--line); border-radius: 999px; background: #fff; padding: .3rem .75rem; font-size: .85rem; font-weight: 600; color: var(--ink); text-decoration: none; }
+.dl-row a:hover { border-color: var(--accent); color: var(--accent); }
+.prompt-head strong { font-size: .92rem; color: #fff; font-weight: 600; }
+
+.escolha { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin-top: 1.3rem; }
+.opc { text-align: left; display: grid; gap: .2rem; padding: .9rem 1.1rem; border: 1.5px solid var(--line); border-radius: .8rem; background: #fff; color: var(--text); cursor: pointer; transition: border-color .15s, background .15s; }
+.opc:hover { border-color: var(--accent-line); }
+.opc.is-on { border-color: var(--accent); background: var(--accent-soft); }
+.opc .part { font-size: .72rem; font-weight: 800; letter-spacing: .1em; color: var(--accent); }
+.opc strong { font-size: 1.02rem; color: var(--ink); }
+.opc span:last-child { font-size: .88rem; color: var(--muted); }
+@media (max-width: 860px) { .escolha { grid-template-columns: 1fr; } }
+
+.overlay { display: none; }
+
+@media (max-width: 860px) {
+  html { font-size: 16px; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .menu-toggle { display: inline-flex; }
+  .topbar { padding: 0 1rem; }
+  .topbar .brand small { display: none; }
+  .sidebar { position: fixed; top: var(--topbar-h); left: 0; bottom: 0; width: min(320px, 86vw); transform: translateX(-104%); transition: transform 180ms ease; z-index: 70; box-shadow: 0 10px 40px rgb(0 0 0 / 20%); }
+  body.nav-open .sidebar { transform: none; }
+  body.nav-open .overlay { display: block; position: fixed; inset: var(--topbar-h) 0 0 0; background: rgb(48 37 31 / 35%); z-index: 65; }
+  .content { padding: 1.5rem 1rem 3.5rem; }
+  .cards { grid-template-columns: 1fr; }
+  h1 { font-size: 1.6rem; }
+  .step h2 { font-size: 1.35rem; }
+  .btn-row .btn { width: 100%; justify-content: center; }
+  .step-foot { flex-wrap: wrap; }
+  .pn { margin-left: 0; width: 100%; }
+  .pn a { flex: 1; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">☰ Menu</button>
+  <div class="brand">Claude Workshop <small>19/11</small></div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar" aria-label="Menu">
+    <nav>
+      <p class="group">Começo</p>
+      <a href="#inicio"><span class="n">—</span><span>Materiais do dia</span></a>
+      <p class="group">Exercício 05 · Agente do painel</p>
+      <a href="#p1"><span class="n">01</span><span>Crie o agente</span></a>
+      <a href="#p2"><span class="n">02</span><span>Agende a skill</span></a>
+      <a href="#p3"><span class="n">03</span><span>Teste com os e-mails</span></a>
+      <a href="#p4"><span class="n">04</span><span>Mais skills</span></a>
+      <p class="group">Exercício 06 · Sua área</p>
+      <a href="#ex6"><span class="n">—</span><span>Matriz de priorização</span></a>
+      <a href="#canvas"><span class="n">—</span><span>Canvas do agente</span></a>
+    </nav>
+    <div class="side-box"><strong>Dados fictícios.</strong> Os fundos, os administradores e os números dos exercícios são inventados.</div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <main>
+    <div class="content">
+
+      <section class="step" id="inicio">
+        <div class="step-meta"><span class="kicker">Materiais do workshop</span></div>
+        <h1>Claude Workshop · 19/11</h1>
+        <p class="lead">Os prompts e os arquivos dos exercícios. Escolha o passo no menu, clique em <strong>Copiar</strong> e cole no Claude.</p>
+        <div class="cards">
+          <a href="#p1"><span class="part">EXERCÍCIO 05 · PASSO 1</span><h4>Crie o agente</h4><p>O Projeto, as instruções e o primeiro painel.</p></a>
+          <a href="#p2"><span class="part">EXERCÍCIO 05 · PASSO 2</span><h4>Agende a skill</h4><p>O painel se atualiza pelo e-mail, todo dia às 8h.</p></a>
+          <a href="#p3"><span class="part">EXERCÍCIO 05 · PASSO 3</span><h4>Teste com os e-mails</h4><p>Os e-mails de hoje chegam e o painel muda.</p></a>
+          <a href="#p4"><span class="part">EXERCÍCIO 05 · PASSO 4</span><h4>Mais skills</h4><p>Alerta de limite e resumo da diretoria.</p></a>
+          <a href="#ex6"><span class="part">EXERCÍCIO 06</span><h4>Matriz de priorização</h4><p>As tarefas da sua área em impacto × esforço.</p></a>
+          <a href="#canvas"><span class="part">EXERCÍCIO 06</span><h4>Canvas do agente</h4><p>Para a tarefa que ficou em Priorizar.</p></a>
+        </div>
+        <footer class="step-foot">
+          <nav class="pn"><a class="next" href="#p1">Começar →</a></nav>
+        </footer>
+      </section>
+
+      <section class="step" id="p1">
+        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 1 de 4</span></div>
+        <h2>Crie o agente e o primeiro painel</h2>
+        <p class="lead">Um Projeto com as instruções, os limites e a planilha da posição de ontem. Ela vira a primeira tela da diretoria.</p>
+        <ol class="passos">
+          <li>Claude › Projetos › Novo projeto. Nome: <strong>Painel diário dos fundos</strong>.</li>
+          <li>Em Instruções do projeto, cole o texto abaixo.</li>
+          <li>Nos arquivos do projeto, suba os limites e a planilha.</li>
+          <li>No Projeto, abra um chat novo e cole o pedido do painel.</li>
+        </ol>
+        <div class="btn-row">
+          <a class="btn ghost" href="arquivos/limites-e-alertas-dos-fundos.md" download="01 Limites e alertas dos fundos.md">⬇ Baixar os limites <small>(.md)</small></a>
+          <a class="btn ghost" href="arquivos/posicao-dos-fundos.xlsx" download="Posição dos fundos 18-11-2026.xlsx">⬇ Baixar a planilha <small>(.xlsx)</small></a>
+          <a class="btn ghost" href="arquivos/Ex5-arquivos-do-projeto.zip" download="Ex5-arquivos-do-projeto.zip">⬇ Baixar tudo <small>(.zip)</small></a>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt 1</span><strong>Instruções do projeto</strong><button class="copy" type="button">Copiar</button></div>
+<pre>PAPEL
+Você é o analista de monitoramento dos fundos da gestora. Mantém o painel da diretoria sempre atualizado.
+
+RECURSOS
+- "Posição dos fundos": a planilha com a posição de ontem, nos arquivos do Projeto. É a base do primeiro painel.
+- Os e-mails com "Posição diária" no assunto, pelo conector do Outlook (só leitura), para as atualizações.
+- "01 Limites e alertas dos fundos": os limites e alertas da casa.
+
+AÇÃO
+- Monte o painel em um artefato: no topo, o que exige atenção; um card por fundo com semáforo; a tabela com os números; o PL consolidado.
+- Semáforo: o pior indicador do fundo define a cor. Vermelho acima de um limite, amarelo na faixa de atenção, verde no resto.
+- Calcule com código: inadimplência = vencido há mais de 30 dias ÷ carteira em aberto; concentração = exposição ÷ carteira em aberto; resgate relevante = resgates do dia ÷ PL do dia útil anterior.
+- A cada atualização, compare com a posição anterior (o e-mail do dia útil anterior ou, na primeira vez, a planilha) e diga o que mudou.
+- As skills de alerta e de resumo usam o painel já atualizado. Alertas e resumo saem no chat.
+
+TOM
+Direto, para a diretoria. R$ em milhões com duas casas (R$ 46,88 mi). Percentuais com uma casa (9,7%).
+
+O QUE NÃO FAZER
+- Não responda, encaminhe nem envie e-mail. Alerta é rascunho para revisão humana.
+- Não invente número que não veio na planilha ou no e-mail.</pre>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt 2</span><strong>O pedido do painel</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Monte o painel dos fundos para a diretoria em um artefato, com a planilha do Projeto:
+- no topo, o que exige atenção hoje;
+- um card por fundo, com semáforo;
+- a tabela com os números de cada fundo;
+- o PL consolidado.</pre>
+        </div>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#inicio">← Início</a><a class="next" href="#p2">Agende a skill →</a></nav>
+        </footer>
+      </section>
+      <section class="step" id="p2">
+        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 2 de 4</span></div>
+        <h2>Crie a skill que atualiza o painel</h2>
+        <p class="lead">Ligue o conector do Outlook. A skill busca a posição nova no e-mail e atualiza o painel no horário que você definir.</p>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+<pre>Crie uma skill chamada atualizar-painel-fundos.
+Ela lê no meu e-mail as mensagens com "Posição diária" no assunto, atualiza o painel com a posição nova e diz o que mudou desde a última posição.
+Depois, agende essa skill para todo dia útil às 8h.
+Não responda nem envie nenhum e-mail.</pre>
+        </div>
+        <p class="depois">Confira o agendamento: todo dia útil às 8h. Se não aparecer a opção de agendar, siga sem essa parte: você roda a skill na mão.</p>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#p1">← Crie o agente</a><a class="next" href="#p3">Teste com os e-mails →</a></nav>
+        </footer>
+      </section>
+      <section class="step" id="p3">
+        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 3 de 4</span></div>
+        <h2>Teste com os e-mails de hoje</h2>
+        <p class="lead">Espere chegarem os 3 e-mails com “Posição diária” no assunto. Depois rode a tarefa e veja o painel se atualizar.</p>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+<pre>Rode agora a atualização do painel com os e-mails de hoje.</pre>
+        </div>
+        <p class="depois">Veja no painel o que mudou desde ontem.</p>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#p2">← Agende a skill</a><a class="next" href="#p4">Mais skills →</a></nav>
+        </footer>
+      </section>
+      <section class="step" id="p4">
+        <div class="step-meta"><span class="kicker">Exercício 05 · Passo 4 de 4</span></div>
+        <h2>Mais skills, mais horários</h2>
+        <p class="lead">O mesmo agente ganha novas tarefas: um alerta quando um limite estoura e o resumo do dia para a diretoria.</p>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt 1</span><strong>Skill de alerta</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Crie uma skill chamada alerta-de-limite.
+Quando um fundo passar de um limite do arquivo de limites, ou tiver um resgate relevante, ela escreve o rascunho do alerta para quem deve receber: fundo, indicador, valor, limite e ação recomendada.
+É só rascunho: nunca envie.
+Agende para todo dia útil às 8h15 e rode agora.</pre>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt 2</span><strong>Skill do resumo</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Crie uma skill chamada resumo-da-diretoria.
+Ela resume o painel do dia em até 5 linhas: primeiro o que exige decisão, depois o que mudou e, por último, o PL consolidado. Sem tabela.
+Agende para todo dia útil às 8h30 e rode agora.</pre>
+        </div>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#p3">← Teste com os e-mails</a><a class="next" href="#ex6">Matriz de priorização →</a></nav>
+        </footer>
+      </section>
+      <section class="step" id="ex6">
+        <div class="step-meta"><span class="kicker">Exercício 06</span></div>
+        <h2>Matriz de priorização da sua área</h2>
+        <p class="lead">O Claude entrevista você, levanta as tarefas da sua área e monta a matriz impacto × esforço em um artefato.</p>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+<pre>Quero preencher a matriz de priorização da minha área.
+Sou [cargo] da área de [área] em uma gestora de FIDCs.
+
+COMO É A MATRIZ
+Ela tem dois eixos:
+- Impacto no resultado (baixo ou alto): quanto a tarefa pesa em tempo, custo, receita, qualidade ou risco da área.
+- Esforço e risco para implementar com IA (baixo ou alto): quanto depende da TI, de integração entre sistemas, de dado sensível ou de mudança no processo.
+
+E quatro quadrantes:
+- Priorizar: impacto alto, esforço baixo. É o foco da área.
+- Fila do follow-up: impacto alto, esforço alto. Fica para a próxima etapa.
+- Faz sozinho com o Claude: impacto baixo, esforço baixo. Cada pessoa resolve com Projeto, skill ou artefato.
+- Não agora: impacto baixo, esforço alto.
+
+ETAPA 1 · LEVANTAR AS TAREFAS
+Me entreviste para levantar de 6 a 8 tarefas da minha área que se repetem.
+Faça uma pergunta por vez e espere a minha resposta. Use estas perguntas, nesta ordem:
+1. Quais entregas a sua área faz toda semana ou todo mês?
+2. O que mais toma tempo do time?
+3. Onde acontece mais erro ou retrabalho?
+4. O que vive atrasando ou depende de uma pessoa só?
+5. Que informação vocês copiam de um lugar para outro na mão?
+Se eu citar um processo grande, me ajude a quebrar em tarefas. Uma tarefa tem começo, meio e fim: algo entra, alguém analisa e algo sai.
+Quando tiver de 6 a 8 tarefas, me mostre a lista numerada e pergunte se falta ou sobra alguma.
+
+ETAPA 2 · AVALIAR CADA TAREFA
+Passe pela lista, uma tarefa por mensagem. Em cada uma, faça estas quatro perguntas juntas:
+a) Quantas vezes por mês ela roda e quanto tempo leva?
+b) O que acontece quando ela atrasa ou sai errada?
+c) O que a área ganharia se ela ficasse mais rápida ou sem erro?
+d) Os dados estão em arquivos e e-mails que eu acesso, ou em sistemas que dependem da TI?
+
+ETAPA 3 · MONTAR A MATRIZ
+Com as minhas respostas, classifique cada tarefa em impacto (alto ou baixo) e esforço (alto ou baixo). Depois monte um artefato com:
+- a matriz 2 × 2, com o nome dos quadrantes e cada tarefa no seu lugar;
+- embaixo, uma tabela com: tarefa, frequência, impacto, esforço, quadrante e o motivo em uma linha;
+- um aviso nas tarefas em que o erro é caro, irreversível, regulado ou envolve dado sensível: nelas, uma pessoa sempre revisa.
+
+REGRAS
+- Use só o que eu disser. Não invente tarefa nem número.
+- Se eu responder curto ou disser "pular", siga em frente.
+- Não sugira ainda como executar cada tarefa. Isso é o próximo passo.
+- No fim, diga quais 1 ou 2 tarefas ficaram em Priorizar e por quê.</pre>
+        </div>
+        <p class="depois">Troque [cargo] e [área] pelos seus antes de enviar.</p>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#p4">← Mais skills</a><a class="next" href="#canvas">Canvas do agente →</a></nav>
+        </footer>
+      </section>
+      <section class="step" id="canvas">
+        <div class="step-meta"><span class="kicker">Exercício 06 · Depois da matriz</span></div>
+        <h2>Canvas do seu agente</h2>
+        <p class="lead">Pegue uma tarefa que ficou em Priorizar e preencha o canvas. Ele vira as instruções do seu Projeto.</p>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Canvas</span><button class="copy" type="button">Copiar</button></div>
+<pre>CANVAS DO MEU AGENTE
+
+1. O que quero automatizar?
+
+2. Como eu faço isso hoje? Quanto tempo leva?
+
+3. Qual output espero e em que formato?
+
+4. Quais documentos precisam de acesso? (Arquivos)
+
+5. Que sistemas precisa acessar? (Conexões)
+
+6. Quais processos preciso criar? (Skills)
+
+7. Instruções gerais para o agente, em PRATO (Prompt)
+   P · Papel:
+   R · Recursos:
+   A · Ação:
+   T · Tom:
+   O · O que não fazer:</pre>
+        </div>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#ex6">← Matriz de priorização</a></nav>
+        </footer>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  var steps = [].slice.call(document.querySelectorAll(".step"));
+  var links = [].slice.call(document.querySelectorAll(".sidebar nav a"));
+  function mostrar() {
+    var id = (location.hash || "#inicio").slice(1);
+    if (!document.getElementById(id) || !document.getElementById(id).classList.contains("step")) id = "inicio";
+    steps.forEach(function (s) { s.classList.toggle("active", s.id === id); });
+    links.forEach(function (a) { a.classList.toggle("is-active", a.getAttribute("href") === "#" + id); });
+    document.body.classList.remove("nav-open");
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", mostrar);
+  mostrar();
+
+  document.querySelectorAll(".opc").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var o = b.getAttribute("data-opc");
+      document.querySelectorAll(".opc").forEach(function (x) { var on = x === b; x.classList.toggle("is-on", on); x.setAttribute("aria-selected", on ? "true" : "false"); });
+      document.querySelectorAll(".opcao").forEach(function (x) { x.hidden = x.getAttribute("data-opc") !== o; });
+    });
+  });
+
+  var toggle = document.querySelector(".menu-toggle");
+  toggle.addEventListener("click", function () {
+    var aberto = document.body.classList.toggle("nav-open");
+    toggle.setAttribute("aria-expanded", aberto ? "true" : "false");
+  });
+  document.getElementById("overlay").addEventListener("click", function () { document.body.classList.remove("nav-open"); });
+
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var texto = btn.closest(".prompt").querySelector("pre").textContent;
+      function ok() {
+        btn.textContent = "Copiado ✓"; btn.classList.add("ok");
+        setTimeout(function () { btn.textContent = "Copiar"; btn.classList.remove("ok"); }, 1800);
+      }
+      function reserva() {
+        var t = document.createElement("textarea");
+        t.value = texto; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+        document.body.appendChild(t); t.select();
+        try { document.execCommand("copy"); ok(); } catch (e) { btn.textContent = "Selecione e copie"; }
+        document.body.removeChild(t);
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(texto).then(ok, reserva);
+      else reserva();
+    });
+  });
+})();
+</script>
+</body>
+</html>
