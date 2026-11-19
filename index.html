@@ -169,6 +169,8 @@ details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
       <p class="group">Exercício 06 · Sua área</p>
       <a href="#ex6"><span class="n">—</span><span>Matriz de priorização</span></a>
       <a href="#canvas"><span class="n">—</span><span>Canvas do agente</span></a>
+      <p class="group">Exercício 07 · Retorno</p>
+      <a href="#ex7"><span class="n">—</span><span>CFO cético</span></a>
     </nav>
     <div class="side-box"><strong>Dados fictícios.</strong> Os fundos, os administradores e os números dos exercícios são inventados.</div>
   </aside>
@@ -188,6 +190,7 @@ details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
           <a href="#p4"><span class="part">EXERCÍCIO 05 · PASSO 4</span><h4>Mais skills</h4><p>Alerta de limite e resumo da diretoria.</p></a>
           <a href="#ex6"><span class="part">EXERCÍCIO 06</span><h4>Matriz de priorização</h4><p>As tarefas da sua área em impacto × esforço.</p></a>
           <a href="#canvas"><span class="part">EXERCÍCIO 06</span><h4>Canvas do agente</h4><p>Para a tarefa que ficou em Priorizar.</p></a>
+          <a href="#ex7"><span class="part">EXERCÍCIO 07</span><h4>CFO cético</h4><p>O business case em 5 linhas e a crítica.</p></a>
         </div>
         <footer class="step-foot">
           <nav class="pn"><a class="next" href="#p1">Começar →</a></nav>
@@ -390,7 +393,41 @@ REGRAS
    O · O que não fazer:</pre>
         </div>
         <footer class="step-foot">
-          <nav class="pn"><a href="#ex6">← Matriz de priorização</a></nav>
+          <nav class="pn"><a href="#ex6">← Matriz de priorização</a><a class="next" href="#ex7">CFO cético →</a></nav>
+        </footer>
+      </section>
+      <section class="step" id="ex7">
+        <div class="step-meta"><span class="kicker">Exercício 07</span></div>
+        <h2>Defenda o seu caso para um CFO cético</h2>
+        <p class="lead">Escreva o business case em 5 linhas do processo que ficou em Priorizar. Depois peça ao Claude a crítica de quem assina o cheque.</p>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Modelo</span><strong>O business case em 5 linhas</strong><button class="copy" type="button">Copiar</button></div>
+<pre>BUSINESS CASE · [nome do processo]
+
+1. Dor: o que dói hoje, com número.
+
+2. Como é hoje: tempo, prazo e erros (a linha de base).
+
+3. Ganho e destino: qual ganho (tempo, prazo, risco ou capacidade) e para onde vai a hora liberada.
+
+4. Métrica e contramétrica: o que prova que funcionou e o que não pode piorar.
+
+5. Custo e uso: licenças, horas para montar e como a TI vê o uso.</pre>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt</span><strong>O CFO cético</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Você é o CFO de uma gestora de FIDCs: cético, direto e sem paciência para promessa.
+Leia o business case abaixo e:
+1. Faça as 3 perguntas mais duras que você faria antes de aprovar.
+2. Aponte onde estou medindo atividade em vez de resultado e qual contramétrica falta.
+3. Dê o veredito: aprova, aprova com condições ou reprova.
+Não reescreva o caso por mim. Seja breve.
+
+[cole aqui as suas 5 linhas]</pre>
+        </div>
+        <p class="depois">Responda à pergunta mais dura e revise um número e a contramétrica.</p>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#canvas">← Canvas do agente</a></nav>
         </footer>
       </section>
 
